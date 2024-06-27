@@ -120,7 +120,7 @@ int main(int argc, char **argv) {
     Eigen::Map<Eigen::Quaterniond> m_q = Eigen::Map<Eigen::Quaterniond>(ext);
     Eigen::Map<Eigen::Vector3d> m_t = Eigen::Map<Eigen::Vector3d>(ext + 4);
 
-    ceres::LocalParameterization * q_parameterization = new ceres::EigenQuaternionParameterization();
+    ceres::Manifold *q_parameterization = new ceres::EigenQuaternionManifold();
     ceres::Problem problem;
 
     problem.AddParameterBlock(ext, 4, q_parameterization);

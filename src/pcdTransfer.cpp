@@ -9,7 +9,8 @@
 #include <pcl_conversions/pcl_conversions.h>
 #include <time.h>
 
-#include "CustomMsg.h"
+// #include "CustomMsg.h"
+#include "livox_ros_driver2/CustomMsg.h"
 #include "common.h"
 
 using namespace std;
@@ -21,7 +22,7 @@ struct pointData{
     int i;
 };
 vector<pointData> vector_data;
-livox_ros_driver::CustomMsg livox_cloud;
+livox_ros_driver2::CustomMsg livox_cloud;
 string input_bag_path, output_path;
 int threshold_lidar, data_num;
 
@@ -48,12 +49,12 @@ void loadAndSavePointcloud(int index) {
     }
 
     vector<string> types;
-    types.push_back(string("livox_ros_driver/CustomMsg")); 
+    types.push_back(string("livox_ros_driver2/CustomMsg")); 
     rosbag::View view(bag, rosbag::TypeQuery(types));
 
     int cloudCount = 0;
     for (const rosbag::MessageInstance& m : view) {
-        livox_cloud = *(m.instantiate<livox_ros_driver::CustomMsg>()); // message type
+        livox_cloud = *(m.instantiate<livox_ros_driver2::CustomMsg>()); // message type
 
         for(uint i = 0; i < livox_cloud.point_num; ++i) {
             pointData myPoint;

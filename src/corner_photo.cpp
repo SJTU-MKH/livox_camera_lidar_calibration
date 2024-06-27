@@ -66,7 +66,7 @@ void getParameters() {
 int main(int argc, char **argv) {
     ros::init(argc, argv, "cornerPhoto");
     getParameters();
-
+    cout << "photo_path: " << photo_path << endl;
     src_img = cv::imread(photo_path);
 
     if(src_img.empty()) {  // use the file name to search the photo
@@ -99,6 +99,9 @@ int main(int argc, char **argv) {
     cv::initUndistortRectifyMap(cameraMatrix, distCoeffs, cv::Mat(),cv::getOptimalNewCameraMatrix(cameraMatrix, distCoeffs, imageSize, 1, imageSize, 0), imageSize, CV_16SC2, map1, map2);
     cv::remap(src_img, src_img, map1, map2, cv::INTER_LINEAR);  // correct the distortion
 
+    // save 
+    cv::imwrite("/root/catkin_ws/corrected.jpg", src_img);
+    cv::waitKey(1);
     cout << "Please note the four corners, and then tap a random key to give the coordinate" << endl;
     // cv::namedWindow("source", CV_WINDOW_KEEPRATIO);
     cv::namedWindow("source");

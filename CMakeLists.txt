@@ -3,8 +3,8 @@ project(camera_lidar_calibration)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
-set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_BUILD_TYPE "DEBUG")
+set(CMAKE_CXX_FLAGS "-std=c++14")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
   pcl_conversions
   pcl_ros
   cv_bridge
+  livox_ros_driver2
 )
 
 find_package(PCL REQUIRED)
@@ -31,7 +32,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 list(REMOVE_ITEM PCL_LIBRARIES "vtkproj4")
 
 catkin_package(
- CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
+ CATKIN_DEPENDS roscpp rospy std_msgs message_runtime livox_ros_driver2
 )
 
 ###########

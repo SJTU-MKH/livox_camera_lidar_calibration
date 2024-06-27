@@ -17,6 +17,7 @@
   <build_depend>std_msgs</build_depend>
   <build_depend>libpcl-all-dev</build_depend>
   <build_depend>cv_bridge</build_depend>
+  <build_depend>livox_ros_driver2</build_depend>
   
   <build_export_depend>rospy</build_export_depend>
   <build_export_depend>std_msgs</build_export_depend>
@@ -27,7 +28,8 @@
   <exec_depend>message_runtime</exec_depend>
   <exec_depend>libpcl-all</exec_depend>
   <exec_depend>cv_bridge</exec_depend>
-    
+  <exec_depend>livox_ros_driver2</exec_depend>
+
   <depend>sensor_msgs</depend>
   <depend>roscpp</depend>
 
