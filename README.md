@@ -166,6 +166,7 @@ rosbag record /livox/lidar
 
 4. After collecting all the data, put photos in data/photo folder; LiDAR rosbag in data/lidar folder.
 
+5. livox2pointcloud topic: rosrun camera_lidar_calibration livox2pcl
 ### Step4: Calibration data acquisition
 
 #### 4.1 Parameter setting
