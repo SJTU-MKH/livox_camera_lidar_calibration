@@ -1,5 +1,40 @@
 [中文文档](doc_resources/README_cn.md)
 
+## docker
+1. 先拉取docker镜像
+```
+docker pull markhui/camera_lidar_calib:latest
+```
+2. 创建文件夹
+```
+mkdir -p ~/catkin_ws/src
+cd catkin_ws/src
+git clone https://github.com/Livox-SDK/livox_camera_lidar_calibration.git
+git clone https://github.com/Livox-SDK/livox_ros_driver2.git
+```
+3. 启动docker
+```
+docker run \
+-it \
+--privileged \
+--net=host \
+--name calib1 \
+-v ~/catkin_ws:/root/catkin_ws \
+-v /dev:/dev \
+-e DISPLAY=$DISPLAY \
+-v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+--device /dev/bus/usb \
+markhui/camera_lidar_calib:latest zsh
+```
+
+4. 进入容器编译
+```
+~/catkin_ws
+catkin_make
+source devel/setup.zsh
+```
+5. 运行后续的step3
+
 ## Camera-LiDAR-Calibration Manual
 
 This solution provides a method for manually calibrating the extrinsic parameters between Livox LiDAR  and camera, which has been verified on series Mid-40, Horizon and Tele-15. It includes the calibration of camera intrinsic parameters, obtaining of calibration data, the calculation of extrinsic parameters between camera and LiDAR,  and some examples of camera LiDAR fusion application. In this solution, the board corners are used as calibration targets. Thanks to the non-repetitive scanning characteristics of Livox LiDAR, we can find the accurate position of corner in high density point cloud more easily. At the same time, we can get a better calibration result and a better LiDAR camera fusion.
